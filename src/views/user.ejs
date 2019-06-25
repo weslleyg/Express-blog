@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Usuários</title>
+    <% include ./partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <% users.map(user => { %>
+        <li>
+            <div>
+                <strong><%= user.username %>:</strong>
+                <strong><%= user.email %></strong>
+                <br>
+                <span><%= user.roles %></span>
+            </div>
+        </li>
+    <% }); %>
+  </body>
+</html>

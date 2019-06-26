@@ -40,7 +40,7 @@ module.exports = {
 
 			user.password = undefined;
 
-			return res.send({
+			return res.json({
 				user,
 				token: generateToken({ id: user._id, roles: user.roles })
 			});

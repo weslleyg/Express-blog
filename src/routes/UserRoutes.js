@@ -9,6 +9,9 @@ routes.post('/login', UserController.login);
 routes.post('/refresh', UserController.refreshToken);
 
 // GET
+routes.get('/login', (req, res) => {
+	res.render('login');
+});
 routes.get('/', UserController.users);
 routes.get('/:username', UserController.user);
 

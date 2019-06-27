@@ -1,10 +1,13 @@
 const express = require('express');
-const authMiddleware = require('../services/auth');
+const authService = require('../services/auth');
 
 const route = express.Router();
 
-route.get('/', authMiddleware.auth, (req, res, next) => {
-	res.render('index');
+route.get('/', authService.isAdm, (req, res, next) => {
+	res.status(200).send({
+		title: 'Node API',
+		version: '0.0.1'
+	});
 });
 
 module.exports = route;

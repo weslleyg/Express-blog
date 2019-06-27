@@ -40,7 +40,7 @@ module.exports = {
 
 			user.password = undefined;
 
-			return res.json({
+			return res.send({
 				user,
 				token: generateToken({ id: user._id, roles: user.roles })
 			});
@@ -70,7 +70,7 @@ module.exports = {
 		try {
 			const user = await User.find().sort('-createdAt');
 
-			return res.render('user', { users: user });
+			return res.json(user);
 		} catch (err) {
 			return res.status(400).send({ error: 'Falha ao processar sua requisição!' });
 		}

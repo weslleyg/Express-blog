@@ -3,7 +3,6 @@ const authConfig = require('../config/auth');
 
 exports.auth = (req, res, next) => {
 	const authHeader = req.headers.authorization;
-	console.log(req.headers);
 
 	if (!authHeader) return res.status(401).send({ error: 'Nenhum token disponível!' });
 

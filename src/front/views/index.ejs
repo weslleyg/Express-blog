@@ -8,7 +8,7 @@
       <% include ./partials/header %>
     </header>
 
-    <main class='mt-4 pt-4'>
+    <main id='main' class='mt-4 pt-4'>
         <div class="jumbotron container">
             <h1 class="display-3">Hello, world!</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -21,5 +21,15 @@
     </main>
 
       <% include ./partials/footer %>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script type='text/javascript'>
+
+        $.ajax({
+          headers: {
+            "authorization": `Bearer ${localStorage.getItem('projeto_app')}`
+          }
+        })
+      </script>
   </body>
 </html>

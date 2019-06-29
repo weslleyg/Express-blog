@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <form id="form" onsubmit="login()">
+    <form action="/user/login" onsubmit="login()" method="POST">
       <input type="text" id="email" name="email" required />
       <input type="password" id="password" name="password" required />
 
@@ -13,7 +13,6 @@
     </form>
 
     <script src="/axios/dist/axios.js"></script>
-    <script src="/javascripts/api.js"></script>
     <script src="/javascripts/auth.js"></script>
   </body>
 </html>

@@ -1,13 +1,16 @@
+const TOKEN_KEY = "projeto_app";
+
+axios.defaults.baseURL = "http://localhost:3333";
+axios.defaults.headers.common["Authorization"] = `Bearer ${getToken()}`;
+axios.defaults.headers.post["Content-Type"] =
+  "application/x-www-form-urlencoded";
+
 function getToken() {
-  localStorage.getItem(tokenKey());
+  localStorage.getItem(TOKEN_KEY);
 }
 
-function loginToken(data) {
-  localStorage.setItem(tokenKey(), data);
-}
-
-function tokenKey() {
-  return "projeto_app";
+function loginToken(token) {
+  localStorage.setItem(TOKEN_KEY, token);
 }
 
 function getData() {
@@ -15,14 +18,15 @@ function getData() {
     email: document.getElementById("email").value,
     password: document.getElementById("password").value
   };
-  console.log(data);
+
+  return data;
 }
 
 login = async (data = getData()) => {
   try {
-    document.getElementById("form").preventDefault();
-    const response = await api.post("/user/login", data);
+    const response = await axios.post(`/user/login`, data);
     loginToken(response.data.token);
+    console.log(response);
   } catch (err) {
     error: "Deu ruim";
   }

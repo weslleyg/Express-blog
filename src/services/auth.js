@@ -1,48 +1,58 @@
-const jwt = require('jsonwebtoken');
-const authConfig = require('../config/auth');
+const jwt = require("jsonwebtoken");
+const authConfig = require("../config/auth");
 
 exports.auth = (req, res, next) => {
-	const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization;
 
-	if (!authHeader) return res.status(401).send({ error: 'Nenhum token disponível!' });
+  console.log(authHeader);
 
-	const parts = authHeader.split(' ');
+  if (!authHeader)
+    return res.status(401).send({ error: "Nenhum token disponível!" });
 
-	if (!parts.legth === 2) return res.status(401).send({ error: 'Erro no token!' });
+  const parts = authHeader.split(" ");
 
-	const [ scheme, token ] = parts;
+  if (!parts.legth === 2)
+    return res.status(401).send({ error: "Erro no token!" });
 
-	if (!/^Bearer$/i.test(scheme)) return res.status(401).send({ error: 'Token mal formatado!' });
+  const [scheme, token] = parts;
 
-	jwt.verify(token, authConfig.secret, (err, decoded) => {
-		if (err) return res.status(401).send({ error: 'Token inválido!' });
+  if (!/^Bearer$/i.test(scheme))
+    return res.status(401).send({ error: "Token mal formatado!" });
 
-		req.userId = decoded.id;
-		return next();
-	});
+  jwt.verify(token, authConfig.secret, (err, decoded) => {
+    if (err) return res.status(401).send({ error: "Token inválido!" });
+
+    req.userId = decoded.id;
+    return next();
+  });
 };
 
 exports.isAdm = (req, res, next) => {
-	const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization;
 
-	if (!authHeader) return res.status(401).send({ error: 'Nenhum token disponível!' });
+  if (!authHeader)
+    return res.status(401).send({ error: "Nenhum token disponível!" });
 
-	const parts = authHeader.split(' ');
+  const parts = authHeader.split(" ");
 
-	if (!parts.legth === 2) return res.status(401).send({ error: 'Erro no token!' });
+  if (!parts.legth === 2)
+    return res.status(401).send({ error: "Erro no token!" });
 
-	const [ scheme, token ] = parts;
+  const [scheme, token] = parts;
 
-	if (!/^Bearer$/i.test(scheme)) return res.status(401).send({ error: 'Token mal formatado!' });
+  if (!/^Bearer$/i.test(scheme))
+    return res.status(401).send({ error: "Token mal formatado!" });
 
-	jwt.verify(token, authConfig.secret, (err, decoded) => {
-		if (err) res.status(401).send({ error: 'Token inválido!' });
+  jwt.verify(token, authConfig.secret, (err, decoded) => {
+    if (err) res.status(401).send({ error: "Token inválido!" });
 
-		if (decoded.roles.includes('admin')) {
-			req.userId = decoded.id;
-			return next();
-		} else {
-			res.status(401).send({ error: 'Esta funcionalidade é restrita para administradores!' });
-		}
-	});
+    if (decoded.roles.includes("admin")) {
+      req.userId = decoded.id;
+      return next();
+    } else {
+      res.status(401).send({
+        error: "Esta funcionalidade é restrita para administradores!"
+      });
+    }
+  });
 };

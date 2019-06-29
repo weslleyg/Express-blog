@@ -27,6 +27,7 @@ app.use(
   })
 );
 app.use(express.static(path.join(__dirname, "../", "public")));
+app.use(express.static(path.join(__dirname, "../", "node_modules")));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const server = require("http").Server(app);

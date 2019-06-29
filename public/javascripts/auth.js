@@ -1,7 +1,9 @@
-const api = require("./api");
-
 function getToken() {
   localStorage.getItem(tokenKey());
+}
+
+function loginToken(data) {
+  localStorage.setItem(tokenKey(), data);
 }
 
 function tokenKey() {
@@ -14,13 +16,13 @@ function getData() {
     password: document.getElementById("password").value
   };
   console.log(data);
-  console.log(login());
 }
 
 login = async (data = getData()) => {
   try {
+    document.getElementById("form").preventDefault();
     const response = await api.post("/user/login", data);
-    console.log(response);
+    loginToken(response.data.token);
   } catch (err) {
     error: "Deu ruim";
   }

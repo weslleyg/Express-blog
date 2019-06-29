@@ -5,15 +5,14 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <form onsubmit="login()">
+    <form id="form" onsubmit="login()">
       <input type="text" id="email" name="email" required />
       <input type="password" id="password" name="password" required />
 
       <button type="submit" onclick="getData()">Login</button>
     </form>
 
-    <%console.log(auth) %>
-
+    <script src="/axios/dist/axios.js"></script>
     <script src="/javascripts/api.js"></script>
     <script src="/javascripts/auth.js"></script>
   </body>

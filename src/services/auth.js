@@ -2,9 +2,10 @@ const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth");
 
 exports.auth = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const authHeader =
+    req.body.token || req.query.token || req.headers.authorization;
 
-  console.log(authHeader);
+  console.log(req.headers);
 
   if (!authHeader)
     return res.status(401).send({ error: "Nenhum token disponível!" });

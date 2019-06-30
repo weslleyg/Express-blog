@@ -5,8 +5,16 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${getToken()}`;
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
 
+const config = {
+  headers: { Authorization: `Bearer ${getToken()}` }
+};
+
+const bodyParameters = {
+  key: "value"
+};
+
 function getToken() {
-  localStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem(TOKEN_KEY);
 }
 
 function loginToken(token) {
@@ -26,8 +34,9 @@ login = async (data = getData()) => {
   try {
     const response = await axios.post(`/user/login`, data);
     loginToken(response.data.token);
-    console.log(response);
+    console.log(getToken());
   } catch (err) {
+    console.log(config);
     error: "Deu ruim";
   }
 };

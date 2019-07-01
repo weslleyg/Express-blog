@@ -11,7 +11,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
         <Component {...props} />
       ) : (
         <Redirect
-          to={{ pathname: "/signin", state: { from: props.location } }}
+          to={{ pathname: "/login", state: { from: props.location } }}
         />
       )
     }
@@ -30,7 +30,7 @@ export const AdminRoute = ({ component: Component, ...rest }) => (
         )
       ) : (
         <Redirect
-          to={{ pathname: "/signin", state: { from: props.location } }}
+          to={{ pathname: "/login", state: { from: props.location } }}
         />
       )
     }

@@ -15,18 +15,41 @@ const SignUpForm = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Username</label>
-      <input type="text" name="username" onChange={handleChange} required />
+    <div className="container">
+      <form class="text-center border border-light" onSubmit={handleSubmit}>
+        <p class="h4 mb-4">Cadastrar-se</p>
 
-      <label>Email</label>
-      <input type="email" name="email" onChange={handleChange} required />
+        <input
+          type="text"
+          name="username"
+          onChange={handleChange}
+          id="defaultLoginFormUsername"
+          class="form-control mb-4"
+          placeholder="Username"
+        />
 
-      <label>Senha</label>
-      <input type="password" name="password" onChange={handleChange} required />
+        <input
+          type="email"
+          name="email"
+          onChange={handleChange}
+          id="defaultLoginFormEmail"
+          class="form-control mb-4"
+          placeholder="E-mail"
+        />
 
-      <button type="submit">Cadastrar</button>
-    </form>
+        <input
+          type="password"
+          name="password"
+          id="defaultLoginFormPassword"
+          class="form-control mb-4"
+          placeholder="Password"
+        />
+
+        <button class="btn btn-info btn-block my-4" type="submit">
+          Cadastrar
+        </button>
+      </form>
+    </div>
   );
 };
 

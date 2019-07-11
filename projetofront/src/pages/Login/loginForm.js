@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 import useForm from "../../components/useForm";
+import "./styles.css";
 import api from "../../services/api";
 import { login } from "../../services/auth";
 
@@ -15,15 +16,32 @@ const LoginForm = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Email</label>
-      <input type="email" name="email" onChange={handleChange} required />
+    <div className="container">
+      <form class="text-center border border-light" onSubmit={handleSubmit}>
+        <p class="h4 mb-4">Fazer Login</p>
 
-      <label>Senha</label>
-      <input type="password" name="password" onChange={handleChange} required />
+        <input
+          type="email"
+          name="email"
+          onChange={handleChange}
+          id="defaultLoginFormEmail"
+          class="form-control mb-4"
+          placeholder="E-mail"
+        />
 
-      <button type="submit">Login</button>
-    </form>
+        <input
+          type="password"
+          name="password"
+          id="defaultLoginFormPassword"
+          class="form-control mb-4"
+          placeholder="Password"
+        />
+
+        <button class="btn btn-info btn-block my-4" type="submit">
+          Entrar
+        </button>
+      </form>
+    </div>
   );
 };
 

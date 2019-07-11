@@ -21,8 +21,24 @@ const Routes = () => (
           </>
         )}
       />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={SignUp} />
+      <Route
+        path="/login"
+        component={() => (
+          <>
+            <NavBar />
+            <Login />
+          </>
+        )}
+      />
+      <Route
+        path="/signup"
+        component={() => (
+          <>
+            <NavBar />
+            <SignUp />
+          </>
+        )}
+      />
     </Switch>
   </BrowserRouter>
 );
